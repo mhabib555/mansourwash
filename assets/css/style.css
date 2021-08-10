@@ -1,0 +1,13 @@
+* {
+    box-sizing: content-box;
+}
+
+
+#main-nav  {
+    background: #fff;
+}
+
+#main-nav .nav-link  {
+    font-weight: bold;
+    color: #CCB686;
+}
