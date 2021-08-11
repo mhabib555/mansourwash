@@ -126,7 +126,11 @@ header.page-header h4 span {
 
 
 .contact-items i {
-    color: #ccb686;
+  color: #ccb686;
+}
+
+.contact-items p {
+  color: #322E61;
 }
 
 .send-message-container {
