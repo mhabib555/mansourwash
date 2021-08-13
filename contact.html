@@ -134,7 +134,7 @@
             </div>
             <div class="col">
               <input
-                type="text"
+                type="email"
                 class="form-control"
                 placeholder="Your email"
                 aria-label="Your email"
@@ -155,6 +155,7 @@
           </div>
           <div class="row g-3 mt-3">
             <div class="col">
+              <div class="alert alert-danger"></div>
               <div class="d-grid gap-2">
                 <button class="btn btn-block btn-primary" id="sendMessage">Submit</button>
               </div>
@@ -211,7 +212,28 @@
 
     <script>
       (function () {
+        $(".alert-danger").hide();
+        $(".alert-success").hide();
+        
         $("#sendMessage").click(function () {
+          $("#sendMessage").attr('disabled',true);
+          $(".alert-danger").hide();
+          $(".alert-success").hide();
+          if( $("#name").val()=="") {
+            $(".alert-danger").html('Name is required');
+            $(".alert-danger").show();
+            return;
+          }
+          if( $("#email").val()=="") {
+            $(".alert-danger").html('Email is required');
+            $(".alert-danger").show();
+            return;
+          }
+          if( $("#message").val()=="") {
+            $(".alert-danger").html('Message is required');
+            $(".alert-danger").show();
+            return;
+          }
           $.ajax({
             type: "POST",
             url: "http://localhost:8080/api/sendfeedback",
@@ -223,9 +245,15 @@
             },
             cache: false,
             success: function (data) {
-              console.log(data);
-              $("#resultarea").text(data);
+              $(".alert-success").show();
+              $(".alert-success").html(data.message);
+              $("#sendMessage").attr('disabled',false);
             },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                $(".alert-danger").html('Failed to send message');
+                $(".alert-danger").show();
+                $("#sendMessage").attr('disabled',false);
+            }
           });
         });
       })();
