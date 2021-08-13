@@ -236,7 +236,15 @@
 
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
+    <script src="../assets/js/cookie.js"></script>
+
     <script>
+      setCookie(
+        "accessToken",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI4ODE5OTMzLCJleHAiOjE2Mjg5MDYzMzN9.V2yxvBwIBSDqdxg7zcLU8fknjzULeVAuefVZ4AblGV8",
+        7
+      );
+
       function formatDate(date) {
         var hours = date.getHours();
         var minutes = date.getMinutes();
@@ -246,10 +254,9 @@
         minutes = minutes < 10 ? "0" + minutes : minutes;
         var strTime = hours + ":" + minutes + " " + ampm;
         return (
-            date.getDate() +
+          date.getDate() +
           "/" +
-          (date.getMonth() +
-          1 )+
+          (date.getMonth() + 1) +
           "/" +
           date.getFullYear() +
           "  " +
@@ -263,8 +270,7 @@
             url: "http://localhost:8080/api/admin/feedback/all",
             method: "GET",
             headers: {
-              "x-access-token":
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI4ODE5OTMzLCJleHAiOjE2Mjg5MDYzMzN9.V2yxvBwIBSDqdxg7zcLU8fknjzULeVAuefVZ4AblGV8",
+              "x-access-token": getCookie("accessToken"),
             },
           },
           columns: [
