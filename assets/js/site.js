@@ -20,3 +20,13 @@ function getCookie(cname) {
     return "";
 }
 
+
+function logout() {
+    setCookie('accessToken', "", -2);
+    window.location.href = "login.html";
+}
+
+
+if(!getCookie('accessToken')) {
+    window.location.href = "login.html";
+}
