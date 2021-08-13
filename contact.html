@@ -221,16 +221,19 @@
           if( $("#name").val()=="") {
             $(".alert-danger").html('Name is required');
             $(".alert-danger").show();
+            $("#sendMessage").attr('disabled',false);
             return;
           }
           if( $("#email").val()=="") {
             $(".alert-danger").html('Email is required');
             $(".alert-danger").show();
+            $("#sendMessage").attr('disabled',false);
             return;
           }
           if( $("#message").val()=="") {
             $(".alert-danger").html('Message is required');
             $(".alert-danger").show();
+            $("#sendMessage").attr('disabled',false);
             return;
           }
           $.ajax({
